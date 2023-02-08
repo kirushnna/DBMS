@@ -1,0 +1,80 @@
+mysql> use college
+Database changed
+mysql> create table student(student_ID int(22),Name varchar(33),place varchar(44),phone_num int(55),DOB int(25),pin int(12));
+Query OK, 0 rows affected (0.19 sec)
+
+mysql> desc student;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| student_ID | int(22)     | YES  |     | NULL    |       |
+| Name       | varchar(33) | YES  |     | NULL    |       |
+| place      | varchar(44) | YES  |     | NULL    |       |
+| phone_num  | int(55)     | YES  |     | NULL    |       |
+| DOB        | int(25)     | YES  |     | NULL    |       |
+| pin        | int(12)     | YES  |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+6 rows in set (0.03 sec)
+
+mysql> alter table student;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> add PRIMARY KEY(student_ID);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'add PRIMARY KEY(student_ID)' at line 1
+mysql> ADD PRIMARY KEY student_ID int(22)
+    -> desc student;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ADD PRIMARY KEY student_ID int(22)
+desc student' at line 1
+mysql> alter table student add PRIMARY KEY(student_ID);
+Query OK, 0 rows affected (0.33 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc student;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| student_ID | int(22)     | NO   | PRI | 0       |       |
+| Name       | varchar(33) | YES  |     | NULL    |       |
+| place      | varchar(44) | YES  |     | NULL    |       |
+| phone_num  | int(55)     | YES  |     | NULL    |       |
+| DOB        | int(25)     | YES  |     | NULL    |       |
+| pin        | int(12)     | YES  |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+6 rows in set (0.01 sec)
+
+mysql> alter table student add FOREIGN KEY(place) REFERENCES table(place);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'table(place)' at line 1
+mysql> create table place(place_ID int(10));
+Query OK, 0 rows affected (0.18 sec)
+
+mysql> desc place;
++----------+---------+------+-----+---------+-------+
+| Field    | Type    | Null | Key | Default | Extra |
++----------+---------+------+-----+---------+-------+
+| place_ID | int(10) | YES  |     | NULL    |       |
++----------+---------+------+-----+---------+-------+
+1 row in set (0.12 sec)
+
+mysql> alter table student add FOREIGN KEY(place) REFERENCES place(place_ID);
+ERROR 1005 (HY000): Can't create table 'college.#sql-2d9c_6' (errno: 150)
+mysql> use college;
+Database changed
+mysql> create table place(place_id int(22));
+ERROR 1050 (42S01): Table 'place' already exists
+mysql> drop place;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'place' at line 1
+mysql> drop table place;
+Query OK, 0 rows affected (0.14 sec)
+
+mysql> use college;
+Database changed
+mysql> create table place(place_id int(33));
+Query OK, 0 rows affected (0.17 sec)
+
+mysql> alter table student add FOREIGN KEY(pin) REFERENCES table(place_id);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'table(place_id)' at line 1
+mysql> alter table student add FOREIGN KEY(pin) REFERENCES table place(place_id);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'table place(place_id)' at line 1
+mysql> alter table student add FOREIGN KEY(pin);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql>
