@@ -1,0 +1,41 @@
+mysql> use college
+Database changed
+mysql> create table student(Roll_num int(10),Name varchar(20),DOB int(15),Mobile_number int(30),City varchar(44));
+Query OK, 0 rows affected (0.34 sec)
+
+mysql> desc student;
++---------------+-------------+------+-----+---------+-------+
+| Field         | Type        | Null | Key | Default | Extra |
++---------------+-------------+------+-----+---------+-------+
+| Roll_num      | int(10)     | YES  |     | NULL    |       |
+| Name          | varchar(20) | YES  |     | NULL    |       |
+| DOB           | int(15)     | YES  |     | NULL    |       |
+| Mobile_number | int(30)     | YES  |     | NULL    |       |
+| City          | varchar(44) | YES  |     | NULL    |       |
++---------------+-------------+------+-----+---------+-------+
+5 rows in set (0.03 sec)
+
+mysql> alter table student add Age int(22);
+Query OK, 0 rows affected (0.24 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc student;
++---------------+-------------+------+-----+---------+-------+
+| Field         | Type        | Null | Key | Default | Extra |
++---------------+-------------+------+-----+---------+-------+
+| Roll_num      | int(10)     | YES  |     | NULL    |       |
+| Name          | varchar(20) | YES  |     | NULL    |       |
+| DOB           | int(15)     | YES  |     | NULL    |       |
+| Mobile_number | int(30)     | YES  |     | NULL    |       |
+| City          | varchar(44) | YES  |     | NULL    |       |
+| Age           | int(22)     | YES  |     | NULL    |       |
++---------------+-------------+------+-----+---------+-------+
+6 rows in set (0.08 sec)
+
+mysql> drop table student;
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> desc table student;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'table student' at line 1
+mysql> desc student;
+ERROR 1146 (42S02): Table 'college.student' doesn't exist
