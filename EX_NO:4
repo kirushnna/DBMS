@@ -1,0 +1,89 @@
+mysql> update cricketer set place="vellore" where age=27;
+Query OK, 1 row affected (0.13 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update cricketer set place="mumbai" where age=25;
+Query OK, 1 row affected (0.21 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update cricketer set place="chennai" where age=37;
+Query OK, 1 row affected (0.12 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update cricketer set place="kerala" where age=38;
+Query OK, 1 row affected (0.14 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update cricketer set place="delhi" where age=27;
+Query OK, 1 row affected (0.11 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select* from cricketer;
++--------+------+------+----------+---------+
+| name   | age  | roll | high_sco | place   |
++--------+------+------+----------+---------+
+| Rahul  |   27 | RHB  |      126 | delhi   |
+| Hardik |   25 | ALL  |       89 | mumbai  |
+| Sharma |   37 | RHB  |       99 | chennai |
+| Dhoni  |   38 | RHB  |       88 | kerala  |
++--------+------+------+----------+---------+
+4 rows in set (0.00 sec)
+
+mysql> select name from cricketer;
++--------+
+| name   |
++--------+
+| Rahul  |
+| Hardik |
+| Sharma |
+| Dhoni  |
++--------+
+4 rows in set (0.00 sec)
+
+mysql> select* from cricketer where name="Rahul";
++-------+------+------+----------+-------+
+| name  | age  | roll | high_sco | place |
++-------+------+------+----------+-------+
+| Rahul |   27 | RHB  |      126 | delhi |
++-------+------+------+----------+-------+
+1 row in set (0.00 sec)
+
+mysql> update cricketer set place="mumbai" where age>=18;
+Query OK, 3 rows affected (0.14 sec)
+Rows matched: 4  Changed: 3  Warnings: 0
+
+mysql> select* from cricketer;
++--------+------+------+----------+--------+
+| name   | age  | roll | high_sco | place  |
++--------+------+------+----------+--------+
+| Rahul  |   27 | RHB  |      126 | mumbai |
+| Hardik |   25 | ALL  |       89 | mumbai |
+| Sharma |   37 | RHB  |       99 | mumbai |
+| Dhoni  |   38 | RHB  |       88 | mumbai |
++--------+------+------+----------+--------+
+4 rows in set (0.00 sec)
+
+mysql> delete from cricketer where high_sco=88;
+Query OK, 1 row affected (0.07 sec)
+
+mysql> select* from cricketer;
++--------+------+------+----------+--------+
+| name   | age  | roll | high_sco | place  |
++--------+------+------+----------+--------+
+| Rahul  |   27 | RHB  |      126 | mumbai |
+| Hardik |   25 | ALL  |       89 | mumbai |
+| Sharma |   37 | RHB  |       99 | mumbai |
++--------+------+------+----------+--------+
+3 rows in set (0.00 sec)
+
+mysql> select* from cricketer where like 'R%';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'like 'R%'' at line 1
+mysql> select* from cricketer name where like 'R%';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'like 'R%'' at line 1
+mysql> select* from cricketer where name like 'H%';
++--------+------+------+----------+--------+
+| name   | age  | roll | high_sco | place  |
++--------+------+------+----------+--------+
+| Hardik |   25 | ALL  |       89 | mumbai |
++--------+------+------+----------+--------+
+1 row in set (0.11 sec)
