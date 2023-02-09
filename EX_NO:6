@@ -1,0 +1,100 @@
+mysql> use cricket;
+Database changed
+mysql> show tables;
++-------------------+
+| Tables_in_cricket |
++-------------------+
+| cricketer         |
++-------------------+
+1 row in set (0.00 sec)
+
+mysql> desc cricketer;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| name     | varchar(29) | YES  |     | NULL    |       |
+| age      | int(22)     | YES  |     | NULL    |       |
+| roll     | varchar(33) | YES  |     | NULL    |       |
+| high_sco | int(67)     | YES  |     | NULL    |       |
+| place    | varchar(44) | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+5 rows in set (0.03 sec)
+
+mysql> select* from cricketer;
++--------+------+------+----------+--------+
+| name   | age  | roll | high_sco | place  |
++--------+------+------+----------+--------+
+| Rahul  |   27 | RHB  |      126 | mumbai |
+| Hardik |   25 | ALL  |       89 | mumbai |
+| Sharma |   37 | RHB  |       99 | mumbai |
++--------+------+------+----------+--------+
+3 rows in set (0.00 sec)
+
+mysql> select* from cricketer where age BETWEEN 20 and 28;
++--------+------+------+----------+--------+
+| name   | age  | roll | high_sco | place  |
++--------+------+------+----------+--------+
+| Rahul  |   27 | RHB  |      126 | mumbai |
+| Hardik |   25 | ALL  |       89 | mumbai |
++--------+------+------+----------+--------+
+2 rows in set (0.01 sec)
+
+mysql> select* from cricketer where are not between 20 and 28;
+ERROR 1054 (42S22): Unknown column 'are' in 'where clause'
+mysql> select* from cricketer where age not between 20 and 28;
++--------+------+------+----------+--------+
+| name   | age  | roll | high_sco | place  |
++--------+------+------+----------+--------+
+| Sharma |   37 | RHB  |       99 | mumbai |
++--------+------+------+----------+--------+
+1 row in set (0.00 sec)
+
+mysql> select* from cricketer where name in('Hardik');
++--------+------+------+----------+--------+
+| name   | age  | roll | high_sco | place  |
++--------+------+------+----------+--------+
+| Hardik |   25 | ALL  |       89 | mumbai |
++--------+------+------+----------+--------+
+1 row in set (0.00 sec)
+
+mysql> select* from cricketer where age in(37);
++--------+------+------+----------+--------+
+| name   | age  | roll | high_sco | place  |
++--------+------+------+----------+--------+
+| Sharma |   37 | RHB  |       99 | mumbai |
++--------+------+------+----------+--------+
+1 row in set (0.00 sec)
+
+mysql> select sum(high_sco) from cricketer where roll='RHB';
++---------------+
+| sum(high_sco) |
++---------------+
+|           225 |
++---------------+
+1 row in set (0.09 sec)
+
+mysql> select avg(high_sco) from cricketer;
++---------------+
+| avg(high_sco) |
++---------------+
+|      104.6667 |
++---------------+
+1 row in set (0.00 sec)
+
+mysql> select min(high_sco) as minimum from cricketer;
++---------+
+| minimum |
++---------+
+|      89 |
++---------+
+1 row in set (0.10 sec)
+
+mysql> select* from max(high_sco) as maximum from cricketer;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'max(high_sco) as maximum from cricketer' at line 1
+mysql> select max(high_sco) as maximum from cricketer;
++---------+
+| maximum |
++---------+
+|     126 |
++---------+
+1 row in set (0.00 sec)
