@@ -1,0 +1,49 @@
+mysql> create database cricket;
+Query OK, 1 row affected (0.02 sec)
+
+mysql> use cricket;
+Database changed
+mysql> create table cricketer(name varchar(29),age int(22),roll varchar(33),high_sco int(67));
+Query OK, 0 rows affected (0.14 sec)
+
+mysql> insert into cricketer values('Rahul',27,'RHB',126),('Hardik',25,'ALL',89),('Rohit sharma',37,'RHB'200),('Dhoni',40,RHB,101);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '200),('Dhoni',40,RHB,101)' at line 1
+mysql>  insert into cricketer values('Rahul',27,'RHB',126),('Hardik',25,'ALL',89);
+Query OK, 2 rows affected (0.07 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql>  insert into cricketer values('Rohit sharma',37,'RHB'99),('Dhoni',38,'RHB',88);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '99),('Dhoni',38,'RHB',88)' at line 1
+mysql>  insert into cricketer values('Sharma',37,'RHB',99),('Dhoni',38,'RHB',88);
+Query OK, 2 rows affected (0.12 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> select* from cricketer;
++--------+------+------+----------+
+| name   | age  | roll | high_sco |
++--------+------+------+----------+
+| Rahul  |   27 | RHB  |      126 |
+| Hardik |   25 | ALL  |       89 |
+| Sharma |   37 | RHB  |       99 |
+| Dhoni  |   38 | RHB  |       88 |
++--------+------+------+----------+
+4 rows in set (0.00 sec)
+
+mysql> select name from cricketer;
++--------+
+| name   |
++--------+
+| Rahul  |
+| Hardik |
+| Sharma |
+| Dhoni  |
++--------+
+4 rows in set (0.00 sec)
+
+mysql> select* from cricketer where (age=27);
++-------+------+------+----------+
+| name  | age  | roll | high_sco |
++-------+------+------+----------+
+| Rahul |   27 | RHB  |      126 |
++-------+------+------+----------+
+1 row in set (0.00 sec)
