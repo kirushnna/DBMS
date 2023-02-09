@@ -1,0 +1,119 @@
+mysql> desc student;
+ERROR 1046 (3D000): No database selected
+mysql> use college;
+Database changed
+mysql> desc student;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| student_ID | int(22)     | NO   | PRI | 0       |       |
+| Name       | varchar(33) | YES  |     | NULL    |       |
+| place      | varchar(44) | YES  |     | NULL    |       |
+| phone_num  | int(55)     | YES  |     | NULL    |       |
+| DOB        | int(25)     | YES  |     | NULL    |       |
+| pin        | int(12)     | YES  |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+6 rows in set (0.01 sec)
+
+mysql> insert into student values(101,'Krishna','vellore',9361296509,25-03-2004,200206);
+ERROR 1264 (22003): Out of range value for column 'phone_num' at row 1
+mysql>  insert into student values(101,'Krishna','vellore',9361,25-03-2004,200);
+Query OK, 1 row affected (0.19 sec)
+
+mysql> desc student;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| student_ID | int(22)     | NO   | PRI | 0       |       |
+| Name       | varchar(33) | YES  |     | NULL    |       |
+| place      | varchar(44) | YES  |     | NULL    |       |
+| phone_num  | int(55)     | YES  |     | NULL    |       |
+| DOB        | int(25)     | YES  |     | NULL    |       |
+| pin        | int(12)     | YES  |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+6 rows in set (0.01 sec)
+
+mysql> select* from student;
++------------+---------+---------+-----------+-------+------+
+| student_ID | Name    | place   | phone_num | DOB   | pin  |
++------------+---------+---------+-----------+-------+------+
+|        101 | Krishna | vellore |      9361 | -1982 |  200 |
++------------+---------+---------+-----------+-------+------+
+1 row in set (0.10 sec)
+
+mysql> select place from student;
++---------+
+| place   |
++---------+
+| vellore |
++---------+
+1 row in set (0.00 sec)
+
+mysql> drop table student;
+Query OK, 0 rows affected (0.08 sec)
+
+mysql> sclect* from student;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'sclect* from student' at line 1
+mysql> desc student;
+ERROR 1146 (42S02): Table 'college.student' doesn't exist
+mysql> create table s1
+    ->
+    ->
+    -> d
+    -> s;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'd
+s' at line 4
+mysql> use college;
+Database changed
+mysql> create table s1(reg_id int(20),name varchar(25),age varchar(30),city varchar(40));
+Query OK, 0 rows affected (0.13 sec)
+
+mysql> alter table s1 add primary key (reg_id);
+Query OK, 0 rows affected (0.36 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> create table s2(reg)
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')' at line 1
+mysql> create table s2(reg_id int(20),course_id int(39),mobile_number int(33));
+Query OK, 0 rows affected (0.16 sec)
+
+mysql> alter table s2 add foreign key (reg_id) references s1(reg_id);
+Query OK, 0 rows affected (0.23 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc s1;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| reg_id | int(20)     | NO   | PRI | 0       |       |
+| name   | varchar(25) | YES  |     | NULL    |       |
+| age    | varchar(30) | YES  |     | NULL    |       |
+| city   | varchar(40) | YES  |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+4 rows in set (0.17 sec)
+
+mysql> desc s2;
++---------------+---------+------+-----+---------+-------+
+| Field         | Type    | Null | Key | Default | Extra |
++---------------+---------+------+-----+---------+-------+
+| reg_id        | int(20) | YES  | MUL | NULL    |       |
+| course_id     | int(39) | YES  |     | NULL    |       |
+| mobile_number | int(33) | YES  |     | NULL    |       |
++---------------+---------+------+-----+---------+-------+
+3 rows in set (0.01 sec)
+
+mysql> alter table s1 add unique(age);
+Query OK, 0 rows affected (0.27 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc s1;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| reg_id | int(20)     | NO   | PRI | 0       |       |
+| name   | varchar(25) | YES  |     | NULL    |       |
+| age    | varchar(30) | YES  | UNI | NULL    |       |
+| city   | varchar(40) | YES  |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+4 rows in set (0.01 sec)
